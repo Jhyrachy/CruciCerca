@@ -30,7 +30,7 @@ Un potente strumento Python per **creare e risolvere cruciverba** utilizzando pa
 ### Quick Start
 
 1. **Clona o scarica** questo repository
-2. **Crea la cartella 'dizionari/' e popola con i tuoi file in formato .txt** (vedi sezione [Dizionari](#-dizionari))
+2. **Crea la cartella 'dizionari/' e popolala con i tuoi file in formato .txt** (vedi sezione [Dizionari](#-dizionari))
 4. **Apri il notebook**: `ricerca_parole.ipynb`
 5. **Esegui le celle** nell'ordine:
    - Cella 3: Carica funzioni di importazione
