@@ -1,0 +1,48 @@
+# Dizionari - File di testo con le parole
+# Questi file sono esclusi per rispettare i diritti d'autore
+# e per evitare di caricare file potenzialmente grandi
+dizionari/
+*.txt
+
+# File temporanei Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# File di sistema
+.DS_Store
+Thumbs.db
+
+# File di configurazione dell'editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# File di log
+*.log
+
+# Cache e file temporanei
+.cache/
+.tmp/
+temp/
+
+# File di backup
+*.bak
+*.backup
+*.old
+
+# File compressi (potrebbero contenere dizionari)
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.tar.bz2
+
+# Note: Gli utenti devono aggiungere manualmente i propri file dizionario
+# nella cartella dizionari/ dopo aver clonato il repository
