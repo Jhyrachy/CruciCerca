@@ -2,303 +2,221 @@
 
 Un potente strumento Python per **creare e risolvere cruciverba** utilizzando pattern avanzati e wildcard intelligenti.
 
-## 🎯 Caratteristiche Principali
+## ✨ Caratteristiche Principali
 
-### ## �‍💻 Contributori
-
-Creato per semplificare la creazione e risoluzione di cruciverba usando Python e Jupyter Notebook.
-
----
-
-## 🤖 Disclaimer - AI Generativa
-
-### Utilizzo di Intelligenza Artificiale
-
-Questo progetto è stato sviluppato con l'assistenza di **AI generativa** (GitHub Copilot/ChatGPT/Claude) per:
-
-- **Generazione del codice**: Le funzioni Python e la logica di ricerca
-- **Documentazione**: README, commenti nel codice e guide utente
-- **Ottimizzazione**: Miglioramento delle performance e della struttura
-- **Testing**: Suggerimenti per casi di test e debugging
-
-### Responsabilità e Trasparenza
-
-- **Codice Verificato**: Tutto il codice è stato testato e validato manualmente
-- **Logica Originale**: I requisiti e l'architettura sono stati definiti dall'autore umano
-- **Personalizzazione**: Il codice è stato adattato e modificato per le esigenze specifiche
-- **Manutenzione**: L'autore si assume la responsabilità per bug e aggiornamenti
-
-### Note per gli Utilizzatori
-
-- Il codice funziona come documentato, indipendentemente dall'assistenza AI
-- Gli algoritmi di ricerca sono standard e ben consolidati
-- L'AI ha accelerato lo sviluppo ma non compromette la qualità o funzionalità
-- Il progetto può essere modificato e esteso seguendo le pratiche standard di programmazione
-
----
-
-## 📚 Attributioncerca Avanzata con Wildcard**
+### 🔍 **Ricerca Avanzata con Wildcard**
 - **`*`** = qualsiasi carattere
 - **`@`** = vocale (a, e, i, o, u)  
 - **`#`** = consonante (tutte le altre lettere)
-- **`-testo`** = sottostringa (trova parole che contengono 'testo')
+- **`-testo`** = sottostringa con filtri di lunghezza opzionali
 
 ### 📚 **Multi-Dizionario Automatico**
 - Caricamento automatico di tutti i file `.txt` dalla cartella `dizionari/`
 - Supporto per più lingue contemporaneamente
-- Risultati organizzati per dizionario
+- Risultati organizzati per dizionario con statistiche
 
 ### 🎨 **Interface User-Friendly**
 - Output colorato e organizzato con emoji
-- Statistiche dettagliate
-- Ricerca interattiva
+- Statistiche dettagliate per ogni ricerca
+- Modalità ricerca interattiva integrata
 
-## 🚀 Esempi di Utilizzo
+## 🚀 Installazione e Setup
+
+### Requisiti
+- **Python 3.6+**
+- **Jupyter Notebook**
+- Librerie standard: `os`, `glob`
+
+### Quick Start
+
+1. **Clona o scarica** questo repository
+2. **Aggiungi i tuoi dizionari** nella cartella `dizionari/` (vedi sezione [Dizionari](#-dizionari))
+3. **Apri il notebook**: `ricerca_parole.ipynb`
+4. **Esegui le celle** nell'ordine:
+   - Cella 3: Carica funzioni di importazione
+   - Cella 5: Carica funzioni di ricerca  
+   - Cella 8: Carica tutti i dizionari
+   - Cella 11: Inizia la ricerca interattiva!
+
+## 📖 Guida alle Wildcard
+
+### 🔤 Wildcard Disponibili
+
+| Simbolo | Significato | Esempio | Trova |
+|---------|-------------|---------|-------|
+| `*` | Qualsiasi carattere | `c*sa` | casa, cosa, cura... |
+| `@` | Vocale (a,e,i,o,u) | `c@sa` | casa, cosa (no cura) |
+| `#` | Consonante | `#@sa` | casa, masa, pasa... |
+| `-` | Sottostringa | `-tro` | metro, altro, contro... |
+
+### 📏 Filtri di Lunghezza (Sottostringhe)
+
+| Operatore | Significato | Esempio | Trova |
+|-----------|-------------|---------|-------|
+| `=N` | Esatta lunghezza | `-tro=5` | metro, altro (5 lettere) |
+| `<N` | Meno di N lettere | `-mente<8` | mente (5), demente (7) |
+| `>N` | Più di N lettere | `-zione>10` | informazione, costituzione... |
+
+## 💡 Esempi Pratici
 
 ### Pattern Comuni per Cruciverba
 
 ```python
-# Parola di 4 lettere che inizia con 'c' e finisce con 'a'
+# Parole di 4 lettere: c + qualsiasi + qualsiasi + a
 cerca_in_tutti_dizionari(dizionari, 'c**a')
 
-# Parola: consonante-vocale-s-a (casa, masa, pasa...)
+# Parole: consonante + vocale + s + a (casa, masa...)
 cerca_in_tutti_dizionari(dizionari, '#@sa')
 
 # Parole di 5 lettere con vocali in 2ª e 4ª posizione
 cerca_in_tutti_dizionari(dizionari, '*@*@*')
 
-# Parole che contengono 'tro' (qualsiasi lunghezza)
+# Parole che finiscono in "-zione" di qualsiasi lunghezza
+cerca_in_tutti_dizionari(dizionari, '***zione')
+```
+
+### Ricerca per Sottostringhe
+
+```python
+# Tutte le parole che contengono "tro"
 cerca_in_tutti_dizionari(dizionari, '-tro')
 
-# Parole che contengono 'zione' (qualsiasi lunghezza)
-cerca_in_tutti_dizionari(dizionari, '-zione')
-
-# NUOVO! Filtri di lunghezza per sottostringhe:
-# Parole che contengono 'tro' di esattamente 5 lettere
+# Solo parole di 5 lettere che contengono "tro"
 cerca_in_tutti_dizionari(dizionari, '-tro=5')
 
-# Parole che contengono 'mente' di meno di 10 lettere
-cerca_in_tutti_dizionari(dizionari, '-mente<10')
-
-# Parole che contengono 'zione' di più di 8 lettere
+# Parole lunghe (>8 lettere) che contengono "zione"
 cerca_in_tutti_dizionari(dizionari, '-zione>8')
+
+# Parole corte (<10 lettere) che contengono "mente"
+cerca_in_tutti_dizionari(dizionari, '-mente<10')
 ```
 
 ### Output Esempio
 ```
-🔍 Ricerca sottostringa: 'tro' (parole che contengono questa sequenza)
+🔍 Ricerca sottostringa: 'tro' con filtro lunghezza '=5'
 ============================================================
 
-📚 DIZIONARIO_ITA: 15 risultati
+📚 ITA: 12 risultati
    1. altro
    2. metro
-   3. contro
-   4. centro
-   5. elettro
-   ... e altri 10 risultati
+   3. intro
+   ...
 
-📚 DIZIONARIO_ENG: 8 risultati
-   1. strong
-   2. control
-   3. destroy
-   4. electron
-   ... e altri 4 risultati
+📚 ENG: 8 risultati
+   1. intro
+   2. retro
+   ...
 
 ============================================================
-📊 TOTALE: 23 parole trovate in 2 dizionari
+📊 TOTALE: 20 parole trovate in 2 dizionari
 ```
 
 ## 📁 Struttura del Progetto
 
 ```
 dizionario/
-├── README.md                 # Questo file
-├── ricerca_parole.ipynb     # Notebook principale
-├── dizionari/               # Cartella con i dizionari
-│   ├── dizionario_ita.txt   # Dizionario italiano
-│   ├── dizionario_eng.txt   # Dizionario inglese
-│   └── ...                  # Altri dizionari
-└── readme.txt              # Note aggiuntive
+├── README.md                 # Questa guida
+├── ricerca_parole.ipynb     # Notebook principale Jupyter
+├── .gitignore               # Esclude file dizionario
+└── dizionari/               # ⚠️ AGGIUNGI I TUOI DIZIONARI QUI
+    ├── italiano.txt         # Una parola per riga
+    ├── inglese.txt          # Encoding UTF-8
+    └── altri_dizionari.txt  # Nomi a piacere
 ```
 
-## 🛠️ Setup e Installazione
+## 📚 Dizionari
 
-### Requisiti
-- Python 3.6+
-- Jupyter Notebook
-- Librerie standard: `os`, `glob`
+### ⚠️ Importante: File Dizionario Non Inclusi
 
-### Utilizzo Rapido
+I file dizionario **non sono inclusi** nel repository per rispettare i diritti d'autore. Devi aggiungere i tuoi file!
 
-1. **Apri il notebook**: `ricerca_parole.ipynb`
+### Come Aggiungere Dizionari
 
-2. **Esegui le celle in ordine**:
-   - Cella 3: Carica le funzioni di importazione
-   - Cella 5: Carica le funzioni di ricerca
-   - Cella 7: Carica automaticamente tutti i dizionari
+1. **Crea la cartella**: `mkdir dizionari` (se non esiste)
+2. **Scarica dizionari** da fonti legittime (vedi [Fonti Consigliate](#fonti-consigliate))
+3. **Formato richiesto**: File `.txt` con una parola per riga
+4. **Encoding**: Salva in UTF-8
+5. **Nomi file**: Usa nomi descrittivi (es: `italiano.txt`, `inglese.txt`)
 
-3. **Inizia a cercare**:
-   - Cella 8: Esempi predefiniti
-   - Cella 10: Ricerca interattiva
+### Fonti Consigliate
 
-### Aggiungere Nuovi Dizionari
+- **Italiano**: [github.com/napolux/paroleitaliane](https://github.com/napolux/paroleitaliane)
+- **Inglese**: [github.com/dwyl/english-words](https://github.com/dwyl/english-words)
+- **Accademici**: Risorse universitarie con licenze aperte
 
-**⚠️ Importante**: I file dizionario non sono inclusi nel repository.
-
-Per utilizzare il tool, devi aggiungere i tuoi file dizionario:
-
-1. **Crea la cartella**: `mkdir dizionari` (se non esiste già)
-2. **Aggiungi file .txt**: Ogni file deve contenere una parola per riga
-3. **Encoding UTF-8**: Assicurati che i file siano salvati in UTF-8
-4. **Nomenclatura**: Usa nomi descrittivi (es: `dizionario_ita.txt`, `english_words.txt`)
-
-Basta aggiungere file `.txt` nella cartella `dizionari/` e il sistema li caricherà automaticamente!
-
-## 📖 Guida alle Wildcard
-
-### 🔍 Wildcard Disponibili:
-
-| Simbolo | Significato | Esempio | Risultato |
-|---------|-------------|---------|-----------|
-| `*` | Qualsiasi carattere | `c*sa` | casa, cosa, cura... |
-| `@` | Vocale (a,e,i,o,u) | `c@sa` | casa, cosa |
-| `#` | Consonante | `#@sa` | casa, masa, pasa |
-| `-` | Sottostringa | `-tro` | metro, altro, contro... |
-| `-X=N` | Sottostringa + lunghezza esatta | `-tro=5` | metro, altro (5 lettere) |
-| `-X<N` | Sottostringa + lunghezza massima | `-mente<10` | mente, demente (< 10) |
-| `-X>N` | Sottostringa + lunghezza minima | `-zione>8` | informazione, situazione (> 8) |
-
-### Pattern Utili per Cruciverba
-
-- **Parole corte**: `#@#` (3 lettere: consonante-vocale-consonante)
-- **Terminazioni**: `****zione` (parole che finiscono in -zione)
-- **Iniziali doppie**: `##***` (due consonanti iniziali)
-- **Alternanza**: `#@#@#` (consonante-vocale alternata)
-- **Sottostringhe**: `-tro` (qualsiasi parola contenente 'tro')
-
-### 📏 Filtri di Lunghezza per Sottostringhe
-
-I filtri di lunghezza ti permettono di limitare i risultati delle sottostringhe a parole di una specifica lunghezza:
-
-**Operatori disponibili:**
-- `=N` - Esattamente N lettere
-- `<N` - Meno di N lettere  
-- `>N` - Più di N lettere
-
-**Esempi pratici:**
-- `-tro=5` → Solo parole di 5 lettere con 'tro': metro, altro, intro
-- `-mente<8` → Parole corte con 'mente': mente (5), demente (7)
-- `-zione>10` → Parole lunghe con 'zione': informazione (12), situazione (10+)
-
-**Utilità per cruciverba:**
-- Trova parole che si incastrino in spazi specifici
-- Filtra risultati troppo lunghi o troppi corti
-- Ottimizza la ricerca per griglie di dimensioni precise
+Il sistema caricherà **automaticamente** tutti i file `.txt` trovati nella cartella `dizionari/`!
 
 ## 🎯 Casi d'Uso
 
-### ✏️ **Creazione Cruciverba**
-- Trova parole che si incastrino perfettamente
+### ✏️ Creazione Cruciverba
+- Trova parole che si incastrino perfettamente negli spazi
 - Testa diverse combinazioni di lunghezza
-- Esplora sinonimi e varianti
+- Esplora terminazioni comuni (`-zione`, `-mente`, `-ando`)
 
-### 🧩 **Risoluzione Cruciverba**
-- Inserisci le lettere che conosci con pattern fissi
-- Usa wildcard per le lettere mancanti
-- Cerca sottostringhe con `-testo` per parole parziali
-- Confronta risultati da più dizionari
+### 🧩 Risoluzione Cruciverba  
+- Inserisci le lettere note con pattern fissi (`c*s*`)
+- Usa wildcard per lettere mancanti (`#@ro`)
+- Cerca sottostringhe per parole parziali (`-tro`)
 
-### 📝 **Giochi di Parole**
-- Anagrammi con pattern
-- Parole con schemi specifici
-- Ricerca di famiglie di parole (es: `-zione`, `-mente`)
+### 📝 Giochi di Parole
+- Trova famiglie di parole (`-mente`, `-zione`)
+- Parole con schemi specifici (`#@#@#`)
 - Sfide linguistiche creative
 
 ## 🔧 Funzioni Principali
 
 ### `carica_tutti_dizionari()`
-Carica automaticamente tutti i file `.txt` disponibili.
+Carica automaticamente tutti i file `.txt` disponibili dalla cartella `dizionari/`.
 
 ### `cerca_in_tutti_dizionari(dizionari, pattern)`
-Cerca un pattern in tutti i dizionari e mostra risultati divisi.
+Cerca un pattern in tutti i dizionari caricati. Supporta sia pattern fissi che sottostringhe.
+
+**Parametri opzionali:**
+- `mostra_tutti=False` - Limita l'output
+- `max_risultati_per_dizionario=10` - Massimo risultati per dizionario
 
 ### `cerca_parole(dizionario, pattern)`
-Cerca un pattern in un dizionario specifico.
+Cerca un pattern in un singolo dizionario specifico.
+
+### `cerca_sottostringa(dizionario, testo, filtro_lunghezza)`
+Cerca sottostringhe con filtri di lunghezza opzionali.
 
 ## 🌟 Caratteristiche Avanzate
 
-- **Case Insensitive**: Funziona con maiuscole/minuscole
+- **Case Insensitive**: Funziona con maiuscole e minuscole
 - **Rimozione Duplicati**: Elimina automaticamente parole duplicate
 - **Gestione Errori**: Continua a funzionare anche con file corrotti
-- **Statistiche**: Contatori e report dettagliati
-- **Scalabilità**: Gestisce facilmente migliaia di parole
+- **Statistiche Dettagliate**: Contatori e report per ogni ricerca
+- **Scalabile**: Gestisce facilmente migliaia di parole
 
-## 🎨 Personalizzazione
+## 🛠️ Risoluzione Problemi
 
-### Modifica Wildcard
-Puoi facilmente aggiungere nuove wildcard modificando la funzione `cerca_parole()`:
+### "Nessun dizionario trovato"
+- ✅ Verifica che i file `.txt` siano nella cartella `dizionari/`
+- ✅ Controlla che i file abbiano estensione `.txt`
+- ✅ Assicurati che ci sia almeno una parola per file
 
-```python
-elif pat_char == '%':  # Nuova wildcard
-    # Tua logica personalizzata
-```
+### "Encoding error"
+- ✅ Salva i file dizionario in **UTF-8**
+- ✅ Evita caratteri speciali non standard
+- ✅ Una parola per riga, senza spazi extra
 
-### Filtri Personalizzati
-Aggiungi filtri per lunghezza, frequenza, categoria, ecc.
+### Performance lenta
+- ✅ Usa `mostra_tutti=False` per limitare l'output
+- ✅ Aggiungi `max_risultati_per_dizionario=20`
+- ✅ Usa pattern più specifici invece di troppe wildcard
 
-## 🐛 Risoluzione Problemi
+## 🤖 AI Disclaimer
 
-### Dizionari Non Trovati
-- Verifica che i file `.txt` siano nella cartella `dizionari/`
-- Controlla l'encoding (deve essere UTF-8)
-- Assicurati che ci sia una parola per riga
+Questo progetto è stato sviluppato con l'assistenza di **AI generativa** per:
+- Generazione e ottimizzazione del codice Python
+- Documentazione e guide utente
+- Testing e debugging
 
-### Performance Lenta
-- Riduci `max_risultati_per_dizionario`
-- Usa pattern più specifici
-- Considera di dividere dizionari molto grandi
-
-## 📈 Sviluppi Futuri
-
-- [ ] Interface grafica (GUI)
-- [ ] Supporto per definizioni
-- [ ] Export in formati cruciverba
-- [ ] API web per integrazione
-- [ ] Database più ampi
-- [ ] Analisi frequenza parole
+Il codice è stato **verificato manualmente** e funziona indipendentemente dall'assistenza AI. L'autore si assume la responsabilità per funzionalità e manutenzione.
 
 ## 👨‍💻 Contributori
 
-Creato per semplificare la creazione e risoluzione di cruciverba usando Python e Jupyter Notebook.
-
----
-
-## � Attribution
-
-### Dizionari e Fonti Dati
-
-I dizionari utilizzati in questo progetto provengono dalle seguenti fonti:
-
-- **Dizionario Italiano**: https://github.com/napolux/paroleitaliane
-- **Dizionario Inglese**: https://github.com/dwyl/english-words
-
-### Note sui Diritti d'Autore
-
-- I file di dizionario non sono inclusi nel repository per rispettare i diritti d'autore
-- Gli utenti devono procurarsi i propri file dizionario da fonti legittime
-- Assicurarsi di rispettare le licenze e i termini d'uso delle fonti utilizzate
-
-### Licenze Consigliate per Dizionari
-
-- **Creative Commons**: Dizionari con licenza CC-BY o CC-BY-SA
-- **Open Source**: Progetti come Hunspell, OpenTaal, o simili
-- **Pubblico Dominio**: Dizionari storici fuori copyright
-- **Accademico**: Risorse universitarie con licenze appropriate
-
----
-
-## �📞 Supporto
-
-Per domande, suggerimenti o bug reports, consulta il notebook `ricerca_parole.ipynb` che contiene esempi dettagliati e documentazione interattiva.
+Sviluppato per semplificare la creazione e risoluzione di cruciverba utilizzando Python e Jupyter Notebook.
 
 **Buon divertimento con i tuoi cruciverba! 🧩✨**
