@@ -213,7 +213,7 @@ Questo progetto è stato sviluppato con l'assistenza di **AI generativa** per:
 - Documentazione e guide utente
 - Testing e debugging
 
-Il codice è stato **verificato manualmente** e funziona indipendentemente dall'assistenza AI. L'autore si assume la responsabilità per funzionalità e manutenzione.
+Il codice è stato **verificato manualmente** e funziona indipendentemente dall'assistenza AI. Tuttavia, l'autore **non** si assume la responsabilità per funzionalità e manutenzione.
 
 ## 👨‍💻 Contributori
 
